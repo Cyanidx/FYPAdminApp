@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLoginBtn;
     private Button mCreateBtn;
     private Button mForgetBtn;
+    private String role = "Admin";
 
     private FirebaseAuth mAuth;
 

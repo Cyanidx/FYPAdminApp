@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
+
 
     private DatabaseReference mDatabaseCurrentUser;
 
@@ -19,11 +22,13 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private String role = "Admin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -41,12 +46,18 @@ public class MainActivity extends AppCompatActivity {
                     String currentUserId = mAuth.getCurrentUser().getUid();
 
 
-                    mQuery = mDatabase.orderByChild("uid").equalTo(currentUserId);
+                    //mQuery = mDatabase.orderByChild("").equalTo(currentUserId);
 
                 }
 
             }
         };
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+
+
+
+
 
     }
 
@@ -55,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         mAuth.addAuthStateListener(mAuthListener);
+
 
     }
 

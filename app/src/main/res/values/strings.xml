@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FYPAdminApp</string>
+    <string-array name="spinnerRoles">
+        <item>Puller</item>
+        <item>Air Traffic Controller</item>
+        <item>Admin</item>
+    </string-array>
 </resources>

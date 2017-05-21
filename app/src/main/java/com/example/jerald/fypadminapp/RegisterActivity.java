@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText mEmailField;
     private EditText mPasswordField;
     private Button mRegisterBtn;
+    private Spinner spnRole;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -44,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         mEmailField = (EditText)findViewById(R.id.emailField);
         mPasswordField = (EditText)findViewById(R.id.passwordField);
         mRegisterBtn = (Button)findViewById(R.id.registerBtn);
+        spnRole = (Spinner)findViewById(R.id.spinner);
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void startRegister() {
 
         final String name = mNameField.getText().toString().trim();
+        final String role = spnRole.getSelectedItem().toString();
         String email = mEmailField.getText().toString().trim();
         String password = mPasswordField.getText().toString().trim();
 
@@ -64,6 +68,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             mProgress.setMessage("Signing Up...");
             mProgress.show();
+
+
 
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -76,7 +82,8 @@ public class RegisterActivity extends AppCompatActivity {
                         DatabaseReference current_user_db = mDatabase.child(user_id);
 
                         current_user_db.child("name").setValue(name);
-                        current_user_db.child("image").setValue("default");
+                        current_user_db.child("role").setValue(role);
+
 
                         mProgress.dismiss();
 
