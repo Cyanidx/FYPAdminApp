@@ -18,7 +18,12 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ForgetPasswordActivity"></activity>
+        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".ManageGate" />
+        <activity android:name=".GateActivity" />
+        <activity android:name=".AddGate" />
+        <activity android:name=".ManageUser" />
+        <activity android:name=".AddUser"></activity>
     </application>
 
 </manifest>
