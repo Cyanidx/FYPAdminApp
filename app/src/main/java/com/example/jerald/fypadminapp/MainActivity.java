@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String role = "Admin";
-    private Button btnMG, btnMU;
+    private Button btnMG, btnMU, btnAddTerminal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnMG = (Button)findViewById(R.id.btnManageGate);
         btnMU = (Button)findViewById(R.id.btnManageUser);
+        btnAddTerminal = (Button)findViewById(R.id.btnAddTerminal);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -90,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent ManageUserIntent = new Intent(MainActivity.this, ManageUser.class);
+                ManageUserIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(ManageUserIntent);
+            }
+        });
+
+        btnAddTerminal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ManageUserIntent = new Intent(MainActivity.this, AddTerminal.class);
                 ManageUserIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(ManageUserIntent);
             }

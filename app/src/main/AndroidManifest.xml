@@ -23,7 +23,10 @@
         <activity android:name=".GateActivity" />
         <activity android:name=".AddGate" />
         <activity android:name=".ManageUser" />
-        <activity android:name=".AddUser"></activity>
+        <activity android:name=".AddUser" />
+        <activity android:name=".AddTerminal" />
+        <activity android:name=".GateSingleActivity" />
+        <activity android:name=".ManageTimeSlot"></activity>
     </application>
 
 </manifest>
