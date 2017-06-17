@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class GateSingleActivity extends AppCompatActivity {
 
-    Button btnEdit;
+    Button btnManage;
     Button btnDelete;
     TextView tvGate;
     TextView tvTerminal;
@@ -30,7 +30,7 @@ public class GateSingleActivity extends AppCompatActivity {
 
         tvGate = (TextView) findViewById(R.id.tvGate);
         btnDelete = (Button)findViewById(R.id.btnDelete);
-
+        btnManage = (Button)findViewById(R.id.btnManageTimeSlot);
         tvTerminal = (TextView) findViewById(R.id.tvTerminal);
 
         Intent i = this.getIntent();
@@ -53,7 +53,14 @@ public class GateSingleActivity extends AppCompatActivity {
             }
         });
 
-
+        btnManage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Intent = new Intent(GateSingleActivity.this, ManageTimeSlot.class);
+                Intent.putExtra("id",id);
+                startActivity(Intent);
+            }
+        });
 
 
 

@@ -81,8 +81,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                         DatabaseReference current_user_db = mDatabase.child(user_id);
 
+                        String id = current_user_db.getKey();
+
                         current_user_db.child("name").setValue(name);
                         current_user_db.child("role").setValue(role);
+                        current_user_db.child("uid").setValue(id);
+
 
 
                         mProgress.dismiss();

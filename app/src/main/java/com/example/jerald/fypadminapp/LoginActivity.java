@@ -38,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressDialog mProgress;
 
+    String role = "Admin";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
