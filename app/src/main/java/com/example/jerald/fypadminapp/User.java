@@ -6,12 +6,18 @@ package com.example.jerald.fypadminapp;
 
 public class User {
 
-    public String role;
-    public String name;
+    private String name;
+    private String role;
+    private String uid;
 
-    public User(String role, String name) {
-        this.role = role;
+    public User(){
+
+    }
+
+    public User(String name, String role, String uid) {
         this.name = name;
+        this.role = role;
+        this.uid = uid;
     }
 
 
@@ -29,5 +35,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

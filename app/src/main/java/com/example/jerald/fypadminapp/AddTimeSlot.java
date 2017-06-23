@@ -18,6 +18,8 @@ public class AddTimeSlot extends AppCompatActivity {
 
     Button btnAdd;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +31,7 @@ public class AddTimeSlot extends AppCompatActivity {
         etPlane = (EditText)findViewById(R.id.etPlane);
         btnAdd = (Button)findViewById(R.id.btnAddTimeSlot);
 
-        Intent i = this.getIntent();
-        final String id = i.getStringExtra("id");
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(id).child("TimeSlot");
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,20 +52,27 @@ public class AddTimeSlot extends AppCompatActivity {
         if(date.isEmpty()){
             Toast.makeText(AddTimeSlot.this, "Please in fill all the empty field", Toast.LENGTH_SHORT).show();
         } else {
-            final DatabaseReference newPost = mDatabase.push();
+            Intent i = this.getIntent();
+            String gateID = i.getStringExtra("gateID");
+
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("TimeSlot");
+            DatabaseReference newPost = mDatabase.push();
             String id = newPost.getKey();
+
 
             newPost.child("date").setValue(date);
             newPost.child("time").setValue(time);
             newPost.child("flightNo").setValue(flight);
             newPost.child("planeID").setValue(plane);
             newPost.child("id").setValue(id);
+            newPost.child("gateID").setValue(gateID);
             newPost.child("direction").setValue("Not Updated");
 
             Toast.makeText(AddTimeSlot.this, "Flight Added", Toast.LENGTH_SHORT).show();
-            Intent mainIntent = new Intent(AddTimeSlot.this, ManageTimeSlot.class);
-            mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(mainIntent);
+            Intent z = new Intent(AddTimeSlot.this, ManageTimeSlot.class);
+            z.putExtra("gateID",gateID);
+            z.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(z);
         }
 
     }

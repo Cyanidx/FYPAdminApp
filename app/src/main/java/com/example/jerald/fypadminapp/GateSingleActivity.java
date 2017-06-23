@@ -57,7 +57,7 @@ public class GateSingleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent Intent = new Intent(GateSingleActivity.this, ManageTimeSlot.class);
-                Intent.putExtra("id",id);
+                Intent.putExtra("gateID",id);
                 startActivity(Intent);
             }
         });

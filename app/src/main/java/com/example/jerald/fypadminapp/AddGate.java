@@ -95,12 +95,14 @@ public class AddGate extends AppCompatActivity {
         if(gate.isEmpty()){
             Toast.makeText(AddGate.this, "Empty Gate Field", Toast.LENGTH_SHORT).show();
         } else {
-            final DatabaseReference newPost = mDatabase.push();
-            String id = newPost.getKey();
+            final DatabaseReference newPost = mDatabase.child(gate);
+            //String id = newPost.getKey();
+
+
 
             newPost.child("gateName").setValue(gate);
             newPost.child("terminalName").setValue(terminal);
-            newPost.child("id").setValue(id);
+            //newPost.child("id").setValue(id);
 
             Toast.makeText(AddGate.this, "Gate Added", Toast.LENGTH_SHORT).show();
             Intent mainIntent = new Intent(AddGate.this, MainActivity.class);

@@ -36,6 +36,7 @@ public class TimeSlotAdapter extends BaseAdapter {
         TextView time;
         TextView flight;
         TextView plane;
+        TextView direction;
 
     }
 
@@ -66,6 +67,7 @@ public class TimeSlotAdapter extends BaseAdapter {
             holder.time = (TextView) view.findViewById(R.id.tvTime);
             holder.flight = (TextView)view.findViewById(R.id.tvFlight);
             holder.plane = (TextView)view.findViewById(R.id.tvPlane);
+            holder.direction = (TextView)view.findViewById(R.id.tvDirection);
 
             view.setTag(holder);
         } else {
@@ -76,12 +78,13 @@ public class TimeSlotAdapter extends BaseAdapter {
         holder.time.setText(timelist.get(position).getTime());
         holder.flight.setText(timelist.get(position).getFlightNo());
         holder.plane.setText(timelist.get(position).getPlaneID());
+        holder.direction.setText(timelist.get(position).getDirection());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                open(timelist.get(position).getDate(),timelist.get(position).getTime(),timelist.get(position).getFlightNo(),timelist.get(position).getPlaneID(),timelist.get(position).getId());
+                open(timelist.get(position).getDate(),timelist.get(position).getTime(),timelist.get(position).getFlightNo(),timelist.get(position).getPlaneID(),timelist.get(position).getId(),timelist.get(position).getGateID());
 
             }
         });
@@ -97,6 +100,7 @@ public class TimeSlotAdapter extends BaseAdapter {
         i.putExtra("flight",details[2]);
         i.putExtra("plane",details[3]);
         i.putExtra("id",details[4]);
+        i.putExtra("gateID",details[5]);
 
         mContext.startActivity(i);
     }

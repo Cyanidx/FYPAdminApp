@@ -38,15 +38,15 @@ public class ManageTimeSlot extends AppCompatActivity {
 
 
         Intent i = this.getIntent();
-        final String id = i.getStringExtra("id");
+        final String gateID = i.getStringExtra("gateID");
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(id).child("TimeSlot");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("TimeSlot");
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent Intent = new Intent(ManageTimeSlot.this, AddTimeSlot.class);
-                Intent.putExtra("id",id);
+                Intent.putExtra("gateID",gateID);
                 startActivity(Intent);
             }
         });

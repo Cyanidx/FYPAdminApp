@@ -7,7 +7,9 @@ package com.example.jerald.fypadminapp;
 public class TimeSlot {
 
     private String date;
+    private String direction;
     private String flightNo;
+    private String gateID;
     private String id;
     private String planeID;
     private String time;
@@ -17,9 +19,11 @@ public class TimeSlot {
 
     }
 
-    public TimeSlot(String date, String flightNo, String id, String planeID, String time) {
+    public TimeSlot(String date, String direction, String flightNo, String gateID, String id, String planeID, String time) {
         this.date = date;
+        this.direction = direction;
         this.flightNo = flightNo;
+        this.gateID = gateID;
         this.id = id;
         this.planeID = planeID;
         this.time = time;
@@ -63,5 +67,21 @@ public class TimeSlot {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public String getGateID() {
+        return gateID;
+    }
+
+    public void setGateID(String gateID) {
+        this.gateID = gateID;
     }
 }

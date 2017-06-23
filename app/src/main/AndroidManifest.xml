@@ -28,7 +28,8 @@
         <activity android:name=".GateSingleActivity" />
         <activity android:name=".ManageTimeSlot" />
         <activity android:name=".AddTimeSlot" />
-        <activity android:name=".TimeSingleActivity"></activity>
+        <activity android:name=".TimeSingleActivity" />
+        <activity android:name=".UserSingleActivity"></activity>
     </application>
 
 </manifest>
