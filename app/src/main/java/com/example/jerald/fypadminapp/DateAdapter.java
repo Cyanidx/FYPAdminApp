@@ -2,55 +2,50 @@ package com.example.jerald.fypadminapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
- * Created by 15017292 on 4/6/2017.
+ * Created by 15017292 on 24/6/2017.
  */
 
-public class GateAdapter extends BaseAdapter {
+public class DateAdapter extends BaseAdapter {
 
     // Declare Variables
     Context mContext;
     LayoutInflater inflater;
-    private List<Gate> gatelist = null;
-    private ArrayList<Gate> arraylist;
+    private List<Date> timelist = null;
+    private ArrayList<Date> arraylist;
 
-    public GateAdapter(Context context, List<Gate> gatelist) {
+    public DateAdapter(Context context, List<Date> timelist) {
         mContext = context;
-        this.gatelist = gatelist;
+        this.timelist = timelist;
         inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<Gate>();
-        this.arraylist.addAll(gatelist);
+        this.arraylist = new ArrayList<Date>();
+        this.arraylist.addAll(timelist);
     }
 
     public class ViewHolder {
-        TextView gate;
-        TextView terminal;
+        TextView date;
+
 
     }
 
 
     @Override
     public int getCount() {
-        return gatelist.size();
+        return timelist.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return gatelist.get(position);
+        return timelist.get(position);
     }
 
     @Override
@@ -63,24 +58,24 @@ public class GateAdapter extends BaseAdapter {
         final ViewHolder holder;
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.row, null);
+            view = inflater.inflate(R.layout.daterow, null);
             // Locate the TextViews in listview_item.xml
-            holder.gate = (TextView) view.findViewById(R.id.gate);
-            holder.terminal = (TextView) view.findViewById(R.id.terminal);
+            holder.date = (TextView) view.findViewById(R.id.tvDate);
+
 
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
         // Set the results into TextViews
-        holder.gate.setText(gatelist.get(position).getGateName());
-        holder.terminal.setText(gatelist.get(position).getTerminalName());
+        holder.date.setText(timelist.get(position).getDate());
+
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                open(gatelist.get(position).getGateName(),gatelist.get(position).getTerminalName());
+                open(timelist.get(position).getDate(),timelist.get(position).getGateID());
 
             }
         });
@@ -90,12 +85,14 @@ public class GateAdapter extends BaseAdapter {
     }
 
     private void open(String...details){
-        Intent i = new Intent(mContext, GateSingleActivity.class);
-        i.putExtra("gateName",details[0]);
-        i.putExtra("terminalName",details[1]);
+        Intent i = new Intent(mContext, SingleDateActivity.class);
+        i.putExtra("date",details[0]);
+        i.putExtra("gateID",details[1]);
 
 
         mContext.startActivity(i);
     }
 
+
 }
+

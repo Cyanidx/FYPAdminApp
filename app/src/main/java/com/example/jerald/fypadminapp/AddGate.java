@@ -105,7 +105,7 @@ public class AddGate extends AppCompatActivity {
             //newPost.child("id").setValue(id);
 
             Toast.makeText(AddGate.this, "Gate Added", Toast.LENGTH_SHORT).show();
-            Intent mainIntent = new Intent(AddGate.this, MainActivity.class);
+            Intent mainIntent = new Intent(AddGate.this, ManageGate.class);
             mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(mainIntent);
         }

@@ -29,7 +29,9 @@
         <activity android:name=".ManageTimeSlot" />
         <activity android:name=".AddTimeSlot" />
         <activity android:name=".TimeSingleActivity" />
-        <activity android:name=".UserSingleActivity"></activity>
+        <activity android:name=".UserSingleActivity" />
+        <activity android:name=".ManageFlight" />
+        <activity android:name=".SingleDateActivity"></activity>
     </application>
 
 </manifest>

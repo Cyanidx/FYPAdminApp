@@ -7,16 +7,14 @@ package com.example.jerald.fypadminapp;
 public class Gate {
 
     private String gateName;
-    private String id;
     private String terminalName;
 
     public Gate(){
 
     }
 
-    public Gate(String gateName,String id, String terminalName) {
+    public Gate(String gateName, String terminalName) {
         this.gateName = gateName;
-        this.id = id;
         this.terminalName = terminalName;
     }
 
@@ -36,11 +34,4 @@ public class Gate {
         this.terminalName = terminalName;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

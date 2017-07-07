@@ -34,9 +34,8 @@ public class GateSingleActivity extends AppCompatActivity {
         tvTerminal = (TextView) findViewById(R.id.tvTerminal);
 
         Intent i = this.getIntent();
-        String name = i.getStringExtra("gateName");
+        final String name = i.getStringExtra("gateName");
         String terminal = i.getStringExtra("terminalName");
-        final String id = i.getStringExtra("id");
 
         tvGate.setText(name);
         tvTerminal.setText(terminal);
@@ -46,7 +45,7 @@ public class GateSingleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mDatabase.child(id).removeValue();
+                mDatabase.child(name).removeValue();
                 Intent mainIntent = new Intent(GateSingleActivity.this, ManageGate.class);
                 startActivity(mainIntent);
 
@@ -57,7 +56,7 @@ public class GateSingleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent Intent = new Intent(GateSingleActivity.this, ManageTimeSlot.class);
-                Intent.putExtra("gateID",id);
+                Intent.putExtra("gateID",name);
                 startActivity(Intent);
             }
         });

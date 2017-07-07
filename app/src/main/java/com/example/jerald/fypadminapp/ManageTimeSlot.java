@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 
 public class ManageTimeSlot extends AppCompatActivity {
@@ -23,8 +25,9 @@ public class ManageTimeSlot extends AppCompatActivity {
     ListView lvTime;
 
     DatabaseReference mDatabase;
-    ArrayList<TimeSlot> times = new ArrayList<>();
-    TimeSlotAdapter adapter;
+    ArrayList<Date> times = new ArrayList<>();
+    DateAdapter adapter;
+    java.util.Date todayDate;
 
 
     @Override
@@ -40,7 +43,7 @@ public class ManageTimeSlot extends AppCompatActivity {
         Intent i = this.getIntent();
         final String gateID = i.getStringExtra("gateID");
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("TimeSlot");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("Date");
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,20 +54,20 @@ public class ManageTimeSlot extends AppCompatActivity {
             }
         });
 
-        adapter = new TimeSlotAdapter(this, retrieve());
+        adapter = new DateAdapter(this, retrieve());
         lvTime.setAdapter(adapter);
 
 
 
     }
-    public ArrayList<TimeSlot> retrieve(){
+    public ArrayList<Date> retrieve(){
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    TimeSlot time = ds.getValue(TimeSlot.class);
-                    times.add(time);
+                    Date date = ds.getValue(Date.class);
+                    times.add(date);
 
                 }
             }

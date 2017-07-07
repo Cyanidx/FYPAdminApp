@@ -55,16 +55,18 @@ public class AddTimeSlot extends AppCompatActivity {
             Intent i = this.getIntent();
             String gateID = i.getStringExtra("gateID");
 
-            mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("TimeSlot");
-            DatabaseReference newPost = mDatabase.push();
-            String id = newPost.getKey();
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("Date");
+            DatabaseReference newDate = mDatabase.child(date);
+            newDate.child("date").setValue(date);
+            newDate.child("gateID").setValue(gateID);
+            DatabaseReference newTime = newDate.child("TimeSlot");
+            DatabaseReference newPost = newTime.child(time);
 
 
             newPost.child("date").setValue(date);
             newPost.child("time").setValue(time);
             newPost.child("flightNo").setValue(flight);
             newPost.child("planeID").setValue(plane);
-            newPost.child("id").setValue(id);
             newPost.child("gateID").setValue(gateID);
             newPost.child("direction").setValue("Not Updated");
 

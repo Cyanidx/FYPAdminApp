@@ -10,7 +10,6 @@ public class TimeSlot {
     private String direction;
     private String flightNo;
     private String gateID;
-    private String id;
     private String planeID;
     private String time;
 
@@ -19,12 +18,11 @@ public class TimeSlot {
 
     }
 
-    public TimeSlot(String date, String direction, String flightNo, String gateID, String id, String planeID, String time) {
+    public TimeSlot(String date, String direction, String flightNo, String gateID, String planeID, String time) {
         this.date = date;
         this.direction = direction;
         this.flightNo = flightNo;
         this.gateID = gateID;
-        this.id = id;
         this.planeID = planeID;
         this.time = time;
     }
@@ -43,14 +41,6 @@ public class TimeSlot {
 
     public void setFlightNo(String flightNo) {
         this.flightNo = flightNo;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getPlaneID() {
