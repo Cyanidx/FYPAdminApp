@@ -34,7 +34,7 @@ public class ManageFlight extends AppCompatActivity {
         String date = i.getStringExtra("date");
         String gateID = i.getStringExtra("gateID");
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("Date").child(date).child("TimeSlot");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("DaySlot").child(date).child("Flight");
 
         adapter = new TimeSlotAdapter(this, retrieve());
         lvFlight.setAdapter(adapter);

@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +27,8 @@ public class ManageTimeSlot extends AppCompatActivity {
 
     FloatingActionButton fab;
     ListView lvTime;
+    EditText etSearch;
+    Button btnSearch;
 
     DatabaseReference mDatabase;
     ArrayList<Date> times = new ArrayList<>();
@@ -37,13 +43,21 @@ public class ManageTimeSlot extends AppCompatActivity {
 
         fab = (FloatingActionButton)findViewById(R.id.fab);
         lvTime = (ListView)findViewById(R.id.lvTimeSlot);
+        etSearch = (EditText)findViewById(R.id.etSearchDate);
+        btnSearch = (Button)findViewById(R.id.btnSearch);
 
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String date = etSearch.getText().toString();
 
+            }
+        });
 
         Intent i = this.getIntent();
         final String gateID = i.getStringExtra("gateID");
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("Date");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("DaySlot");
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
