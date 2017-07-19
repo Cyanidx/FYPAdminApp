@@ -37,13 +37,12 @@ public class TimeSingleActivity extends AppCompatActivity {
 
         Intent i = this.getIntent();
         String date = i.getStringExtra("date");
-        String time = i.getStringExtra("time");
+        final String time = i.getStringExtra("time");
         String flight = i.getStringExtra("flight");
         String plane = i.getStringExtra("plane");
-        final String id = i.getStringExtra("id");
         final String gateID = i.getStringExtra("gateID");
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("TimeSlot");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("DaySlot").child(date).child("Flight");
 
         etDate.setText(date);
         etTime.setText(time);
@@ -54,10 +53,10 @@ public class TimeSingleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mDatabase.child(id).child("flightNo").setValue(etFlight.getText().toString());
-                mDatabase.child(id).child("date").setValue(etDate.getText().toString());
-                mDatabase.child(id).child("time").setValue(etTime.getText().toString());
-                mDatabase.child(id).child("planeID").setValue(etPlane.getText().toString());
+                mDatabase.child(time).child("flightNo").setValue(etFlight.getText().toString());
+                mDatabase.child(time).child("date").setValue(etDate.getText().toString());
+                mDatabase.child(time).child("time").setValue(etTime.getText().toString());
+                mDatabase.child(time).child("planeID").setValue(etPlane.getText().toString());
 
                 Toast.makeText(TimeSingleActivity.this, "Time Slot Edited", Toast.LENGTH_SHORT).show();
                 Intent a = new Intent(TimeSingleActivity.this, ManageTimeSlot.class);
@@ -71,7 +70,7 @@ public class TimeSingleActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatabase.child(id).removeValue();
+                mDatabase.child(time).removeValue();
                 Toast.makeText(TimeSingleActivity.this, "Time Slot Deleted", Toast.LENGTH_SHORT).show();
                 Intent x = new Intent(TimeSingleActivity.this, ManageTimeSlot.class);
                 x.putExtra("gateID",gateID);
