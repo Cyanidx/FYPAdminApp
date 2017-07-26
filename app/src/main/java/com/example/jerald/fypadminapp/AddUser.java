@@ -85,11 +85,12 @@ public class AddUser extends AppCompatActivity {
 
                         current_user_db.child("name").setValue(name);
                         current_user_db.child("role").setValue(role);
+                        current_user_db.child("uid").setValue(user_id);
 
 
                         mProgress.dismiss();
 
-                        Intent mainIntent = new Intent(AddUser.this, ManageUser.class);
+                        Intent mainIntent = new Intent(AddUser.this, MainActivity.class);
                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(mainIntent);
 
