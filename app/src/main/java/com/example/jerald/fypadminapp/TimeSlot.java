@@ -25,6 +25,7 @@ public class TimeSlot {
         this.gateID = gateID;
         this.planeID = planeID;
         this.time = time;
+
     }
 
     public String getDate() {
@@ -74,4 +75,5 @@ public class TimeSlot {
     public void setGateID(String gateID) {
         this.gateID = gateID;
     }
+
 }

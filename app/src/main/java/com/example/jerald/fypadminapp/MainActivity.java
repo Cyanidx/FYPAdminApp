@@ -2,6 +2,8 @@ package com.example.jerald.fypadminapp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,16 +29,14 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String role = "Admin";
-    private Button btnMG, btnMU, btnAddTerminal;
+    private SectionPageAdapter mSectionPageAdapter;
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnMG = (Button)findViewById(R.id.btnManageGate);
-        btnMU = (Button)findViewById(R.id.btnManageUser);
-        btnAddTerminal = (Button)findViewById(R.id.btnAddTerminal);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -62,12 +62,20 @@ public class MainActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        mSectionPageAdapter = new SectionPageAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager)findViewById(R.id.container);
+        setupViewPager(mViewPager);
 
+        TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
+    }
 
-
-
-
+    private void setupViewPager(ViewPager viewPager){
+        SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new ManageGateFragment(), "Manage Gate");
+        adapter.addFragment(new ManageUserFragment(), "Manage User");
+        viewPager.setAdapter(adapter);
     }
 
     @Override
@@ -75,36 +83,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         mAuth.addAuthStateListener(mAuthListener);
-
-        btnMG.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent ManageGateIntent = new Intent(MainActivity.this, ManageGate.class);
-                ManageGateIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(ManageGateIntent);
-
-            }
-        });
-
-        btnMU.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ManageUserIntent = new Intent(MainActivity.this, ManageUser.class);
-                ManageUserIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(ManageUserIntent);
-            }
-        });
-
-        btnAddTerminal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent ManageUserIntent = new Intent(MainActivity.this, AddTerminal.class);
-                ManageUserIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(ManageUserIntent);
-            }
-        });
-
 
     }
 
@@ -130,6 +108,26 @@ public class MainActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.action_logout){
 
             logout();
+
+        }
+
+        if(item.getItemId() == R.id.action_add_gate){
+
+            Intent a = new Intent(MainActivity.this, AddGate.class);
+            startActivity(a);
+
+        }
+        if(item.getItemId() == R.id.action_add_terminal){
+
+            Intent a = new Intent(MainActivity.this, AddTerminal.class);
+            startActivity(a);
+
+        }
+
+        if(item.getItemId() == R.id.action_add_user){
+
+            Intent a = new Intent(MainActivity.this, AddUser.class);
+            startActivity(a);
 
         }
 

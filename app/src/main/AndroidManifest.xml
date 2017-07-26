@@ -19,19 +19,15 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ForgetPasswordActivity" />
-        <activity android:name=".ManageGate" />
-        <activity android:name=".GateActivity" />
         <activity android:name=".AddGate" />
         <activity android:name=".ManageUser" />
         <activity android:name=".AddUser" />
         <activity android:name=".AddTerminal" />
-        <activity android:name=".GateSingleActivity" />
-        <activity android:name=".ManageTimeSlot" />
         <activity android:name=".AddTimeSlot" />
-        <activity android:name=".TimeSingleActivity" />
         <activity android:name=".UserSingleActivity" />
-        <activity android:name=".ManageFlight" />
-        <activity android:name=".SingleDateActivity"></activity>
+        <activity android:name=".ManageDate" />
+        <activity android:name=".ManageFlight2" />
+        <activity android:name=".TimeSingleActivity"></activity>
     </application>
 
 </manifest>

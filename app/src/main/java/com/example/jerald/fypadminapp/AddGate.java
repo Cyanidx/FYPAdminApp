@@ -28,10 +28,8 @@ public class AddGate extends AppCompatActivity {
     Spinner spnTerminal;
     Button btnAdd;
     ArrayList<String> terminalArray = new ArrayList<>();
-    private DatabaseReference mDatabaseUser;
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabaseSpinner;
-    private ProgressDialog mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +103,7 @@ public class AddGate extends AppCompatActivity {
             //newPost.child("id").setValue(id);
 
             Toast.makeText(AddGate.this, "Gate Added", Toast.LENGTH_SHORT).show();
-            Intent mainIntent = new Intent(AddGate.this, ManageGate.class);
+            Intent mainIntent = new Intent(AddGate.this, MainActivity.class);
             mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(mainIntent);
         }

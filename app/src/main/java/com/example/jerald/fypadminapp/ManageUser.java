@@ -31,15 +31,9 @@ public class ManageUser extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        fab = (FloatingActionButton)findViewById(R.id.fab);
-        lvUser = (ListView)findViewById(R.id.lvUser);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ManageUser.this, AddUser.class));
-            }
-        });
+
+
 
         adapter = new UserAdapter(this, retrieve());
         lvUser.setAdapter(adapter);

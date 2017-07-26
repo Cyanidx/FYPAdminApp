@@ -2,9 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/action_add_gate"
+        android:title="Add Gate"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_add_terminal"
+        android:title="Add Terminal"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_add_user"
+        android:title="Add User"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/action_logout"
         android:title="Log Out"
         app:showAsAction="never"/>
+
 
 
 </menu>

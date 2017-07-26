@@ -36,7 +36,7 @@ public class TimeSingleActivity extends AppCompatActivity {
 
 
         Intent i = this.getIntent();
-        String date = i.getStringExtra("date");
+        final String date = i.getStringExtra("date");
         final String time = i.getStringExtra("time");
         String flight = i.getStringExtra("flight");
         String plane = i.getStringExtra("plane");
@@ -59,8 +59,9 @@ public class TimeSingleActivity extends AppCompatActivity {
                 mDatabase.child(time).child("planeID").setValue(etPlane.getText().toString());
 
                 Toast.makeText(TimeSingleActivity.this, "Time Slot Edited", Toast.LENGTH_SHORT).show();
-                Intent a = new Intent(TimeSingleActivity.this, ManageTimeSlot.class);
+                Intent a = new Intent(TimeSingleActivity.this, ManageFlight2.class);
                 a.putExtra("gateID",gateID);
+                a.putExtra("date",date);
                 startActivity(a);
 
 
@@ -72,7 +73,7 @@ public class TimeSingleActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mDatabase.child(time).removeValue();
                 Toast.makeText(TimeSingleActivity.this, "Time Slot Deleted", Toast.LENGTH_SHORT).show();
-                Intent x = new Intent(TimeSingleActivity.this, ManageTimeSlot.class);
+                Intent x = new Intent(TimeSingleActivity.this, ManageFlight2.class);
                 x.putExtra("gateID",gateID);
                 startActivity(x);
             }
