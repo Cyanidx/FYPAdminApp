@@ -71,8 +71,8 @@ public class AddTimeSlot extends AppCompatActivity {
             newPost.child("direction").setValue("Not Updated");
 
             Toast.makeText(AddTimeSlot.this, "Flight Added", Toast.LENGTH_SHORT).show();
-            Intent z = new Intent(AddTimeSlot.this, ManageDate.class);
-            z.putExtra("gateID",gateID);
+            Intent z = new Intent(AddTimeSlot.this, ManageFlight2.class);
+            z.putExtra("gateName",gateID);
             z.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(z);
         }

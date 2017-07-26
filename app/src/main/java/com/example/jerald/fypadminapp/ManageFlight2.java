@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -191,5 +193,28 @@ public class ManageFlight2 extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.add, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+
+        if(item.getItemId() == R.id.action_add_flight){
+
+            Intent a = new Intent(ManageFlight2.this, AddTimeSlot.class);
+            startActivity(a);
+
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

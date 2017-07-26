@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_add_gate"
-        android:title="Add Gate"
+    <item android:id="@+id/action_add_flight"
+        android:title="Add Flight"
         app:showAsAction="never"/>
 
 </menu>
