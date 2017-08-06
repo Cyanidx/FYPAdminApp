@@ -13,9 +13,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Query mQuery;
 
+    ArrayList<User> users = new ArrayList<>();
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private String role = "Admin";
     private SectionPageAdapter mSectionPageAdapter;
     private ViewPager mViewPager;
 
@@ -51,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
 
                     String currentUserId = mAuth.getCurrentUser().getUid();
+                    mDatabaseCurrentUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+                    retrieve();
 
-
-                    //mQuery = mDatabase.orderByChild("").equalTo(currentUserId);
 
                 }
 
@@ -138,6 +144,38 @@ public class MainActivity extends AppCompatActivity {
     private void logout() {
 
         mAuth.signOut();
+
+    }
+    public ArrayList<User> retrieve(){
+
+        mDatabaseCurrentUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                User user = dataSnapshot.getValue(User.class);
+
+                if(user.getRole().equals("Admin")){
+                    Toast.makeText(MainActivity.this, "Welcome " + user.getName(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Error your account is not eligible to login", Toast.LENGTH_SHORT).show();
+                    Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+                    loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(loginIntent);
+                }
+
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return users;
 
     }
 }

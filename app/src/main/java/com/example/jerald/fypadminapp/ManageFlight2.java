@@ -208,7 +208,11 @@ public class ManageFlight2 extends AppCompatActivity {
 
         if(item.getItemId() == R.id.action_add_flight){
 
+            Intent i = this.getIntent();
+            String gateID = i.getStringExtra("gateName");
+
             Intent a = new Intent(ManageFlight2.this, AddTimeSlot.class);
+            a.putExtra("gateID",gateID);
             startActivity(a);
 
         }
