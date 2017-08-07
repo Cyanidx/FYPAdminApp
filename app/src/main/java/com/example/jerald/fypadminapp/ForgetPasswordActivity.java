@@ -1,10 +1,12 @@
 package com.example.jerald.fypadminapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -30,11 +32,24 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = mEmail.getText().toString().trim();
+                send();
 
-                mAuth.sendPasswordResetEmail(email);
+
             }
         });
+
+    }
+    public void send(){
+        String email = mEmail.getText().toString().trim();
+
+        if(email.isEmpty()){
+            Toast.makeText(this, "Email field must not be empty", Toast.LENGTH_SHORT).show();
+        } else {
+            mAuth.sendPasswordResetEmail(email);
+            Intent i = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
+            startActivity(i);
+        }
+
 
     }
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +24,7 @@ public class AddUser extends AppCompatActivity {
     private EditText mNameField;
     private EditText mEmailField;
     private EditText mPasswordField;
+    private EditText mConfirm;
     private Button mRegisterBtn;
     private Spinner spnRole;
 
@@ -45,6 +47,7 @@ public class AddUser extends AppCompatActivity {
         mNameField = (EditText)findViewById(R.id.nameField);
         mEmailField = (EditText)findViewById(R.id.emailField);
         mPasswordField = (EditText)findViewById(R.id.passwordField);
+        mConfirm = (EditText)findViewById(R.id.confirmPassword);
         mRegisterBtn = (Button)findViewById(R.id.registerBtn);
         spnRole = (Spinner)findViewById(R.id.spinner);
 
@@ -63,13 +66,12 @@ public class AddUser extends AppCompatActivity {
         final String role = spnRole.getSelectedItem().toString();
         String email = mEmailField.getText().toString().trim();
         String password = mPasswordField.getText().toString().trim();
+        String confirm = mConfirm.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && password.equals(confirm)){
 
             mProgress.setMessage("Signing Up...");
             mProgress.show();
-
-
 
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -99,6 +101,8 @@ public class AddUser extends AppCompatActivity {
                 }
             });
 
+        } else {
+            Toast.makeText(this, "One of the field is empty or Password do not match", Toast.LENGTH_SHORT).show();
         }
 
     }
