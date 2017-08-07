@@ -42,6 +42,8 @@ public class TimeSingleActivity extends AppCompatActivity {
         String plane = i.getStringExtra("plane");
         final String gateID = i.getStringExtra("gateID");
 
+        setTitle(gateID+" - Edit Flight");
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("DaySlot").child(date).child("Flight");
 
         etDate.setText(date);

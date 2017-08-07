@@ -44,6 +44,8 @@ public class ManageFlight2 extends AppCompatActivity {
         //String date = i.getStringExtra("date");
         String gateID = i.getStringExtra("gateName");
 
+        setTitle(gateID+" - "+"Manage Flight");
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Gate").child(gateID).child("DaySlot");
 
         mDatabase.addValueEventListener(new ValueEventListener() {

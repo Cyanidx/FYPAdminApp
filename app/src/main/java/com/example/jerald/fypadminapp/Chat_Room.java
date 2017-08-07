@@ -1,9 +1,14 @@
 package com.example.jerald.fypadminapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,6 +62,9 @@ public class Chat_Room extends AppCompatActivity{
                 map2.put("msg",input_msg.getText().toString());
 
                 message_root.updateChildren(map2);
+                input_msg.setText("");
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(input_msg.getWindowToken(), 0);
             }
         });
 
@@ -107,6 +115,29 @@ public class Chat_Room extends AppCompatActivity{
         }
 
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.clear, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        if(item.getItemId() == R.id.action_clear){
+
+            root.removeValue();
+
+        }
+
+
+
+
+        return super.onOptionsItemSelected(item);
     }
 }
 
