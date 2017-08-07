@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private SectionPageAdapter mSectionPageAdapter;
     private ViewPager mViewPager;
 
+    String name, role;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new ManageGateFragment(), "Manage Gate");
         adapter.addFragment(new ManageUserFragment(), "Manage User");
+        adapter.addFragment(new ChatRoomFragment(), "Message");
         viewPager.setAdapter(adapter);
     }
 
@@ -156,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(user.getRole().equals("Admin")){
                     Toast.makeText(MainActivity.this, "Welcome " + user.getName(), Toast.LENGTH_SHORT).show();
+                    name = user.getName().toString();
+                    role = user.getRole().toString();
                 } else {
                     Toast.makeText(MainActivity.this, "Error your account is not eligible to login", Toast.LENGTH_SHORT).show();
                     Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
@@ -178,4 +183,8 @@ public class MainActivity extends AppCompatActivity {
         return users;
 
     }
+    public String getDataName() {
+        return name+"("+role+")";
+    }
+
 }

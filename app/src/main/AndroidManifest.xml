@@ -28,6 +28,7 @@
         <activity android:name=".ManageDate" />
         <activity android:name=".ManageFlight2" />
         <activity android:name=".TimeSingleActivity"></activity>
+        <activity android:name=".Chat_Room"></activity>
     </application>
 
 </manifest>
